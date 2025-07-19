@@ -194,7 +194,7 @@ name = path_to_object
 ![bg right:50%](bg.png)
 
 # Thanks !
-# Question ?
+# Questions ?
 
 Code and slides at: https://github.com/ash2shukla/pycon2025
 Connect with me: https://linkedin.com/in/ash2shukla

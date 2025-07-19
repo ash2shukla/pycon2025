@@ -27,15 +27,6 @@ EPAM Systems
 
 ---
 
-
-# Plugins in context of SQLAlchemy
-
-A new web framework comes every other month in Python but SQLALchemy is still there. *despite not so great documentation*
-
-The reason is -
-
----
-
 # Plugins in context of SQLAlchemy
 
 A new web framework comes every other month in Python but SQLALchemy is still there. *despite not so great documentation*

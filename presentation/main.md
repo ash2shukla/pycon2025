@@ -175,7 +175,20 @@ class PluginLoader:
 
 # How you can make it work for your package
 
-#### Coding Time !!
+## Entrypoints
+(From Python packaging user guide](https://packaging.python.org/en/latest/specifications/entry-points/)
+> Entry points are a mechanism for an installed distribution to advertise components it provides to be discovered and used by other code.
+
+## How to declare it in pyproject.toml
+```python
+[project.entry-points.group_name]
+name = path_to_object
+```
+
+---
+# How you can make it work for your package
+
+#### Coding time !!
 
 ---
 ![bg right:50%](bg.png)

@@ -4,11 +4,14 @@ from .base import registry
 from .plugins import EnglishLanguage
 
 registry.register("english", EnglishLanguage)
-registry.load_external_plugins()
+registry.load_exts()
 
 app = Typer(name="hello-world")
 
+CHOICES = registry.keys()
+
+
 @app.command()
-def main(language: str= Option(default="english", click_type=Choice(registry.list()))):
-    plugin = registry.get(language=language)
+def main(language: str = Option(default="english", click_type=Choice(CHOICES))):
+    plugin = registry.get(name=language)
     plugin.say_hello()

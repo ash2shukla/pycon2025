@@ -1,27 +1,27 @@
 from abc import ABC, abstractmethod
 from importlib import metadata as importlib_metadata
 
+
 class BaseLanguage(ABC):
     @classmethod
     @abstractmethod
-    def say_hello(cls):
-        ...
+    def say_hello(cls): ...
 
 
 class LanguagePluginLoader:
     def __init__(self):
         self.impls = {}
 
-    def get(self, language) -> BaseLanguage:
-        if language in self.impls:
-            return self.impls[language]
+    def get(self, name) -> BaseLanguage:
+        if name in self.impls:
+            return self.impls[name]
 
         raise ValueError("Language not found")
-    
-    def list(self) -> tuple[str, ...]:
+
+    def keys(self) -> tuple[str, ...]:
         return tuple(self.impls)
 
-    def load_external_plugins(self):
+    def load_exts(self):
         entrypoints = importlib_metadata.entry_points()
         for impl in entrypoints.select(group="hello_world"):
             self.impls[impl.name] = impl.load()
@@ -31,5 +31,3 @@ class LanguagePluginLoader:
 
 
 registry = LanguagePluginLoader()
-
-

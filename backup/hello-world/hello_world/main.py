@@ -1,17 +1,10 @@
 from typer import Typer, Option
+from hello_world.base import registry
 from click import Choice
-from .base import registry
-from .plugins import EnglishLanguage
 
-registry.register("english", EnglishLanguage)
-registry.load_exts()
-
-app = Typer(name="hello-world")
-
+app = Typer(name="hello-world CLI")
 CHOICES = registry.keys()
-
 
 @app.command()
 def main(language: str = Option(default="english", click_type=Choice(CHOICES))):
-    plugin = registry.get(name=language)
-    plugin.say_hello()
+    registry.get(language)().say_hello()

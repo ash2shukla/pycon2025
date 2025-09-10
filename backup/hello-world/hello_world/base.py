@@ -1,33 +1,34 @@
 from abc import ABC, abstractmethod
-from importlib import metadata as importlib_metadata
-
+from importlib import metadata
 
 class BaseLanguage(ABC):
-    @classmethod
     @abstractmethod
-    def say_hello(cls): ...
+    def say_hello(self):
+        ...
 
 
-class LanguagePluginLoader:
+class EnglishLanguage(BaseLanguage):
+    def say_hello(self):
+        print("hello world")
+
+
+class LanguageLoader:
     def __init__(self):
-        self.impls = {}
+        self._impls = {}
+    
+    def load(self):
+        for ep in metadata.entry_points().select(group="hello_world"):
+            self.register(ep.name, ep.load())
 
-    def get(self, name) -> BaseLanguage:
-        if name in self.impls:
-            return self.impls[name]
+    def get(self, name: str) -> BaseLanguage:
+        return self._impls[name]
 
-        raise ValueError("Language not found")
+    def keys(self):
+        return list(self._impls)
 
-    def keys(self) -> tuple[str, ...]:
-        return tuple(self.impls)
+    def register(self, name: str, language: BaseLanguage):
+        self._impls[name] = language
 
-    def load_exts(self):
-        entrypoints = importlib_metadata.entry_points()
-        for impl in entrypoints.select(group="hello_world"):
-            self.impls[impl.name] = impl.load()
-
-    def register(self, name: str, impl: BaseLanguage):
-        self.impls[name] = impl
-
-
-registry = LanguagePluginLoader()
+registry = LanguageLoader()
+registry.load()
+registry.register("english", EnglishLanguage)

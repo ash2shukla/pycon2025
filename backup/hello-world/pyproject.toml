@@ -3,10 +3,8 @@ name = "hello-world"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "typer-cli>=0.16.0",
-]
+requires-python = ">=3.10"
+dependencies = []
 
 [project.scripts]
 hw = "hello_world.main:app"

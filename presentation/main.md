@@ -108,6 +108,11 @@ entry_points={
 ```
 
 ---
+# How you can make it work for your package
+
+#### Coding time !!
+
+---
 
 # How you can make it work for your package
 
@@ -119,12 +124,6 @@ entry_points={
 3. Write some code that can load `their code`
     - Plugin Loader
 4. Use others' code !
-
-
----
-# How you can make it work for your package
-
-#### Coding time !!
 
 ---
 # Conclusion
@@ -140,6 +139,8 @@ entry_points={
     3. [Create Engine Implementation](https://github.com/zzzeek/sqlalchemy/blob/main/lib/sqlalchemy/engine/create.py#L116)
 
 2. Airflow - https://github.com/apache/airflow
+    1. [Provider Manager](https://github.com/apache/airflow/blob/main/airflow-core/src/airflow/providers_manager.py)
+    2. [Entrypoint Utils](https://github.com/apache/airflow/blob/main/airflow-core/src/airflow/utils/entry_points.py)
 3. Python Packaging Guide - https://packaging.python.org/en/latest/
 
 ---
